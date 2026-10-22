@@ -1,0 +1,42 @@
+# Umbriel Submap - submap indicator for the Umbriel compositor.
+
+# Umbriel publishes the active keybind submap over its IPC event stream.
+# The bar widget displays the current submap, or a default label when no
+# submap is active if always_visible is enabled. The plugin works on the
+# event stream, so no polling is used. The difference from
+# official/umbriel-companion is that the widget can be completely hidden.
+
+# bar -> active submap indicator, with configurable glyph and color.
+
+id = "execnull/umbriel-submap"
+name = "umbriel-submap"
+version = "0.5.0"
+author = "execnull"
+licence = "MIT"
+deprecated   = false
+plugin_api   = 3
+tags         = ["bar", "indicator", "umbriel"]
+description = "Show Umbriel active submap."
+
+[[widget]]
+  id = "bar"
+  entry = "bar.luau"
+
+  [[widget.setting]]
+  key       = "always_visible"
+  type      = "bool"
+  label_key = "Always visible"
+  default   = false
+
+  [[widget.setting]]
+  key       = "show_glyph"
+  type      = "bool"
+  label_key = "Show glyph"
+  default   = true
+
+  [[widget.setting]]
+  key       = "glyph"
+  type      = "glyph"
+  label_key = "Glyph"
+  default   = "map-route"
+  visible_when = { key = "show_glyph", values = [true] }
